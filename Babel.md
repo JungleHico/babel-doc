@@ -51,9 +51,7 @@ let f = (x) => x + 1;
 
 ```json
 {
-    // ...
     "scripts": {
-        // ...
         "babel": "babel src --out-dir dist"
     }
 }
