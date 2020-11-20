@@ -1,26 +1,26 @@
 # Babel
 
-Babel是一个JavaScript的编译器，可以将ES6的代码转化为浏览器支持的JavaScript代码（通常是ES5），从而在现有环境中运行。这就意味着，我们可以使用ES6编写程序，而不依赖于浏览器是否支持。
+Babel 是一个 JavaScript 的编译器，可以将ES6的代码转化为浏览器支持的 JavaScript 代码（通常是 ES5），从而在现有环境中运行。这就意味着，我们可以使用 ES6 编写程序，而不依赖于浏览器是否支持。
 
-Babel官方文档地址：[https://www.babeljs.cn/](https://www.babeljs.cn/)
+Babel 官方文档地址：[https://www.babeljs.cn/](https://www.babeljs.cn/)
 
 ## 安装
 
-1.新建项目，并在目录下初始化npm（如果没有）：
+1.新建项目，并在目录下初始化 npm（如果没有）：
 ```bash
 npm init -y
 ```
 
-2.安装Babel（7+）：
+2.安装 Babel（7+）：
 ```bash
 npm install --save-dev @babel/core @babel/cli @babel/preset-env
 ```
 
-* @babel/core，Babel编译的核心库
-* @babel/cli，Babel的命令行工具，支持使用命令行进行编译
-* @babel/preset-env，Babel预置插件集，避免一个个插件进行配置
+* @babel/core，Babel 编译的核心库
+* @babel/cli，Babel 的命令行工具，支持使用命令行进行编译
+* @babel/preset-env，Babel 预置插件集，避免一个个插件进行配置
 
-> 注意：Babel7以后的包名以 `@babel/*` 的开头
+> 注意：Babel7 以后的包名以 `@babel/*` 的开头
 
 ## 配置
 
@@ -38,7 +38,7 @@ npm install --save-dev @babel/core @babel/cli @babel/preset-env
 }
 ```
 
-上面的配置使用@babel/presets-env作为预设的插件集，这个插件集包含了ES6的常用语法。为了方便调试，我们启用 `debug`，编译的时候就能打印出使用的插件。
+上面的配置使用 `@babel/presets-env` 作为预设的插件集，这个插件集包含了 ES6 的常用语法。为了方便调试，我们启用 `debug`，编译的时候就能打印出使用的插件。
 
 ## 运行
 
@@ -57,7 +57,7 @@ let f = (x) => x + 1;
 }
 ```
 
-安装了 `@babel/cli`，我们可以通过命令行运行Babel，这里将 `src` 目录下的JS文件编译后，输出到 `dist` 目录，运行命令：
+安装了 `@babel/cli`，我们可以通过命令行运行Babel，这里将 `src` 目录下的 JS 文件编译后，输出到 `dist` 目录，运行命令：
 
 ```bash
 npm run babel
@@ -72,14 +72,14 @@ var f = function f(x) {
 };
 ```
 
-## @babel/preset-env常用配置
+## @babel/preset-env 常用配置
 
 参考官方文档：[https://www.babeljs.cn/docs/babel-preset-env](https://www.babeljs.cn/docs/babel-preset-env)
 
 ### targets
 `string | Array<string> | { [string]: string }`，默认为`{}`
 
-指定目标环境，`@babel/preset-env`只转译目标环境不支持的语法，默认为空，即不考虑目标环境，这时`@babel/preset-env`就会转译所有的ES6语法。这个属性常用的值：
+指定目标环境，`@babel/preset-env` 只转译目标环境不支持的语法，默认为空，即不考虑目标环境，这时 `@babel/preset-env` 就会转译所有的ES6语法。这个属性常用的值：
 ```json
 {
     "presets": [
@@ -237,11 +237,11 @@ str.includes('Babel');
 
 ## 在Webpack中使用Babel
 
-在实际项目开发中，我们很少直接使用Babel，往往是结合Webpack等构建工具一起使用。事实上，如果项目中用到ES6新的API，Babel转义后导入的包来自Node，无法在浏览器直接使用。
+在实际项目开发中，我们很少直接使用 Babel，往往是结合 Webpack 等构建工具一起使用。事实上，如果项目中用到 ES6 新的 API，Babel 转义后导入的包来自 Node，无法在浏览器直接使用。
 
 ### 1. 初始化Webpack
 
-Webpack的配置参考官方文档：[https://www.webpackjs.com/concepts/](https://www.webpackjs.com/concepts/)
+Webpack 的配置参考官方文档：[https://www.webpackjs.com/concepts/](https://www.webpackjs.com/concepts/)
 
 ### 2.安装Babel
 
@@ -249,9 +249,9 @@ Webpack的配置参考官方文档：[https://www.webpackjs.com/concepts/](https
 npm install --save-dev babel-loader @babel/core @babel/preset-env
 ```
 
-相比之前的配置，多安装了 `babel-loader`，去除了 `@babel/cli`，我们不再通过Babel的命令行编译，而是在Webpack打包时，识别JS文件，通过 `babel-loader`，将其中的代码转译成浏览器支持的代码。
+相比之前的配置，多安装了 `babel-loader`，去除了 `@babel/cli`，我们不再通过 Babel 的命令行编译，而是在 Webpack 打包时，识别JS文件，通过 `babel-loader`，将其中的代码转译成浏览器支持的代码。
 
-修改Webpack的配置文件：
+修改 Webpack 的配置文件：
 ```js
 const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -267,7 +267,7 @@ module.exports = {
             // ...
             {
                 test: /\.js$/,
-                exclude: /(node_modules|bower_components)/,    // 排除node_modules目录
+                exclude: /(node_modules|bower_components)/,    // 排除 node_modules 目录
                 use: {
                     loader: 'babel-loader'
                 }
@@ -304,8 +304,6 @@ module.exports = {
 
 可以不指定 `@babel-preset-env` 的 `targets` 值，而是在 `package.json` 中指定 `browserslist`。
 
-除了添加Babel的配置文件，也可以在Webpack的配置文件中进行配置（不推荐），参考：[https://webpack.js.org/loaders/babel-loader/](https://webpack.js.org/loaders/babel-loader/)
+除了添加 Babel 的配置文件，也可以在 Webpack 的配置文件中进行配置（不推荐），参考：[https://webpack.js.org/loaders/babel-loader/](https://webpack.js.org/loaders/babel-loader/)
 
 ### 4.运行Webpack命令
-
-略。
